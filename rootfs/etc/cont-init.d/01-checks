@@ -19,20 +19,14 @@ if [ -z "${BEAST_HOST}" ]; then
   echo -e "${LIGHTRED}ERROR: BEAST_HOST environment variable not set${NOCOLOR}"
   EXITCODE=1
 fi
-# Handle "-e LATITUDE"
-if [ -z "${LATITUDE}" ]; then
-  echo -e "${LIGHTRED}ERROR: LATITUDE environment variable not set${NOCOLOR}"
-  EXITCODE=1
-fi
-# Handle "-e LONGITUDE"
-if [ -z "${LONGITUDE}" ]; then
-  echo -e "${LIGHTRED}ERROR: LONGITUDE environment variable not set${NOCOLOR}"
-  EXITCODE=1
-fi
-# Handle "-e ALTITUDE"
-if [ -z "${ALTITUDE}" ]; then
-  echo -e "${LIGHTRED}ERROR: ALTITUDE environment variable not set${NOCOLOR}"
-  EXITCODE=1
+# Handle "-e FEEDER_ID"
+if [ -z "${FEEDER_ID}" ]
+then
+  echo ""
+  echo "WARNING: FEEDER_ID environment variable was not set!"
+  echo "Please make sure you note down the key generated."
+  echo "Pass the key as environment var FEEDER_ID on next launch!"
+  echo ""
 fi
 # All is good ?
 if [ $EXITCODE == 0 ]; then

@@ -3,3 +3,7 @@
 
 sed -i -e "/^receiver-host.*/c\receiver-host ${BEAST_HOST}" /etc/piaware.conf
 sed -i -e "/^receiver-port.*/c\receiver-port ${BEAST_PORT}" /etc/piaware.conf
+
+if [ -z "${FEEDER_ID}" ] then
+  sed -i -e "/^receiver-port.*/a feeder-id ${FEEDER_ID}" /etc/piaware.conf
+fi
