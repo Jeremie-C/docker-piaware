@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+mkdir -p /var/log/piaware
+chown nobody:nogroup /var/log/piaware
+
+mkdir -p /run/piaware

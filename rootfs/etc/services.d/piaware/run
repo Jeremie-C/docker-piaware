@@ -2,8 +2,6 @@
 # shellcheck shell=bash
 set -eo pipefail
 
-mkdir -p /run/piaware
-
 PIAWARE_BIN="/usr/bin/piaware"
 PIAWARE_CMD=(-plainlog)
 PIAWARE_CMD+=(-statusfile /run/piaware/status.json)

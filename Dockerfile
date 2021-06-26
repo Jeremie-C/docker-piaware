@@ -14,7 +14,7 @@ RUN apt-get update && apt-get upgrade -y && \
   # Required for build
   git build-essential cmake automake python3 python3-dev \
   libncurses6 libncurses-dev tcl tclx tcl-tls tcl-dev \
-  itcl3 tcllib net-tools procps socat file && \
+  itcl3 tcllib net-tools procps socat file gawk && \
   # Chmod scripts
   chmod +x /scripts/*.sh && \
   # S6 OVERLAY
@@ -59,7 +59,7 @@ RUN apt-get update && apt-get upgrade -y && \
   ln -s /usr/local/bin/fa-mlat-client /usr/lib/piaware/helpers/ && \
   # Cleanup
   apt-get remove -y git build-essential python3-dev libncurses-dev \
-  tcl-dev cmake automake file && \
+  tcl-dev cmake automake file ca-certificates wget && \
   apt-get autoremove -y && \
   rm -rf /scripts /src /var/lib/apt/lists/*
 
