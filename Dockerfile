@@ -17,6 +17,8 @@ RUN apt-get update && apt-get upgrade -y && \
   itcl3 tcllib net-tools procps socat file && \
   # Chmod scripts
   chmod +x /scripts/*.sh && \
+  # S6 OVERLAY
+  /scripts/s6-overlay.sh && \
   # Healthcheck
   chmod +x /healthcheck.sh && \
   # tcllauncher
@@ -40,7 +42,7 @@ RUN apt-get update && apt-get upgrade -y && \
   # faup1090
   git clone --depth 1 -b master https://github.com/flightaware/dump1090.git /src/faup1090 && \
   pushd "/src/faup1090" && \
-  bash -x /scripts/armv6-modifiy.sh ./Makefile && \
+  bash -x /scripts/armv6-modify.sh ./Makefile && \
   make showconfig && \
   make faup1090 && \
   cp -v faup1090 /usr/lib/piaware/helpers/ && \

@@ -34,11 +34,6 @@ if [ -z "${ALTITUDE}" ]; then
   echo -e "${LIGHTRED}ERROR: ALTITUDE environment variable not set${NOCOLOR}"
   EXITCODE=1
 fi
-# Handle "-e PIAWARE_ID"
-if [ -z "${PIAWARE_ID}" ]; then
-  echo -e "${LIGHTRED}ERROR: PIAWARE_ID environment variable not set${NOCOLOR}"
-  EXITCODE=1
-fi
 # All is good ?
 if [ $EXITCODE == 0 ]; then
   # shellcheck disable=SC2153
