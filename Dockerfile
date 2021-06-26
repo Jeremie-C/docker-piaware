@@ -39,14 +39,13 @@ RUN apt-get update && apt-get upgrade -y && \
   popd && \
   # faup1090
   git clone --depth 1 -b master https://github.com/flightaware/dump1090.git /src/faup1090 && \
-  pushd "/src/dump1090" && \
-  sed -i 's/ -O3 / -O2 /g' ./Makefile && \
+  pushd "/src/faup1090" && \
   bash -x /scripts/armv6-modifiy.sh ./Makefile && \
   make showconfig && \
   make faup1090 && \
   cp -v faup1090 /usr/lib/piaware/helpers/ && \
   ldconfig && \
-  popd && \  
+  popd && \
   # mlat-client
   git clone https://github.com/mutability/mlat-client.git /src/mlat-client && \
   pushd /src/mlat-client && \
@@ -54,8 +53,8 @@ RUN apt-get update && apt-get upgrade -y && \
   git checkout "$BRANCH_MLAT_CLIENT" && \
   ./setup.py install && \
   ldconfig && \
-  popd && \ 
-  ln -s /usr/local/bin/fa-mlat-client /usr/lib/piaware/helpers/ && \  
+  popd && \
+  ln -s /usr/local/bin/fa-mlat-client /usr/lib/piaware/helpers/ && \
   # Cleanup
   apt-get remove -y git build-essential python3-dev libncurses-dev \
   tcl-dev cmake automake file && \
