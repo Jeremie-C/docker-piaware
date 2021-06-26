@@ -1,0 +1,48 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+EXITCODE=0
+# Define bash colours
+NOCOLOR='\e[0m'
+LIGHTRED='\e[1;31m'
+YELLOW='\e[1;33m'
+CYAN='\e[0;36m'
+
+# Set up timezone
+if [ -z "${TZ}" ]; then
+  echo "${YELLOW}WARNING: TZ environment variable not set${NOCOLOR}"
+else
+  ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime && echo "$TZ" > /etc/timezone
+fi
+# BeastHost
+if [ -z "${BEAST_HOST}" ]; then
+  echo -e "${LIGHTRED}ERROR: BEAST_HOST environment variable not set${NOCOLOR}"
+  EXITCODE=1
+fi
+# Handle "-e LATITUDE"
+if [ -z "${LATITUDE}" ]; then
+  echo -e "${LIGHTRED}ERROR: LATITUDE environment variable not set${NOCOLOR}"
+  EXITCODE=1
+fi
+# Handle "-e LONGITUDE"
+if [ -z "${LONGITUDE}" ]; then
+  echo -e "${LIGHTRED}ERROR: LONGITUDE environment variable not set${NOCOLOR}"
+  EXITCODE=1
+fi
+# Handle "-e ALTITUDE"
+if [ -z "${ALTITUDE}" ]; then
+  echo -e "${LIGHTRED}ERROR: ALTITUDE environment variable not set${NOCOLOR}"
+  EXITCODE=1
+fi
+# Handle "-e PIAWARE_ID"
+if [ -z "${PIAWARE_ID}" ]; then
+  echo -e "${LIGHTRED}ERROR: PIAWARE_ID environment variable not set${NOCOLOR}"
+  EXITCODE=1
+fi
+# All is good ?
+if [ $EXITCODE == 0 ]; then
+  # shellcheck disable=SC2153
+  echo -e "${CYAN}INFO: Connect to ${BEAST_HOST}:${BEAST_PORT} ${NOCOLOR}"
+fi
+
+exit $EXITCODE
