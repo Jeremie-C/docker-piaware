@@ -10,7 +10,7 @@ CYAN='\e[0;36m'
 
 # Set up timezone
 if [ -z "${TZ}" ]; then
-  echo "${YELLOW}WARNING: TZ environment variable not set${NOCOLOR}"
+  echo -e "${YELLOW}WARNING: TZ environment variable not set${NOCOLOR}"
 else
   ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime && echo "$TZ" > /etc/timezone
 fi
@@ -20,13 +20,10 @@ if [ -z "${BEAST_HOST}" ]; then
   EXITCODE=1
 fi
 # Handle "-e FEEDER_ID"
-if [ -z "${FEEDER_ID}" ]
-then
-  echo ""
-  echo "WARNING: FEEDER_ID environment variable was not set!"
+if [ -z "${FEEDER_ID}" ]; then
+  echo -e "${YELLOW}WARNING: FEEDER_ID environment variable was not set!${NOCOLOR}"
   echo "Please make sure you note down the key generated."
   echo "Pass the key as environment var FEEDER_ID on next launch!"
-  echo ""
 fi
 # All is good ?
 if [ $EXITCODE == 0 ]; then
