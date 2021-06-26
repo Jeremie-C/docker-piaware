@@ -42,3 +42,7 @@ jobs:
       - name: Inspect
         run: |
           docker image inspect myimage:latest
+          docker run -d myimage:latest
+          sleep 5
+          docker ps --all
+          docker stop myimage:latest
